@@ -6,11 +6,15 @@ var keyboards = 0;
 var feels = 0;
 var quranspersecond = 0;
 var nedJokes = 0;
+var harshNoise = 0;
 
-
+function manualClick(number){
+    qurans = qurans + number + level;
+    document.getElementById('qurans').innerHTML = qurans;
+};
 
 function qClick(number){
-    qurans = qurans + number + level;
+    qurans = qurans + number;
     document.getElementById("qurans").innerHTML = qurans;
 };
 
@@ -72,6 +76,18 @@ function nedJoke() {
     document.getElementById('nedJokeCost').innerHTML = nextCost;
 };
 
+function harshNoise() {
+    var harshNoiseCost = Math.floor(2000 * Math.pow(2.1,harshNoise));
+    if(qurans >= harshNoiseCost){
+        harshNoise = harshNoise + 1;
+        qurans = qurans - harshNoiseCost;
+        document.getElementById('harshNoise').innerHTML = harshNoise;
+        document.getElementById('qurans').innerHTML = qurans;
+    };
+    var nextCost = Math.floor(2000 * Math.pow(2.1,harshNoiseCost));
+    document.getElementById('harshNoiseCost').innerHTML = nextCost;
+};
+
 function save(){
     var save = {
         qurans: qurans,
@@ -80,8 +96,9 @@ function save(){
         cursors: cursors,
         keyboards: keyboards,
         feels: feels,
-        nedJokes: nedJokes
-    }
+        nedJokes: nedJokes,
+        harshNoise: harshNoise
+    };
     localStorage.setItem("save",JSON.stringify(save));
 };
 
@@ -94,21 +111,27 @@ function load(){
     if(typeof savegame.keyboards !== "undefined") keyboards = savegame.keyboards;
     if(typeof savegame.feels !== "undefined") feels = savegame.feels;
     if(typeof savegame.nedJokes !== "undefined") nedJokes = savegame.nedJokes;
+    if(typeof savegame.harshNoise !== "undefined") harshNoise = savegame.harshNoise;
 };
 
 window.setInterval(function(){
     var currentQurans = qurans;
-    qClick(cursors);
-    qClick(keyboards * 2);
-    qClick(feels * 5);
-    qClick(nedJokes * 10);
+    qClick((cursors)/2);
+    qClick((keyboards * 2)/2);
+    qClick((feels * 6)/2);
+    qClick((nedJokes * 10)/2);
+    qClick((harshNoise * 20)/2);
 
-    var quranspersecond = qurans - currentQurans;
+    var quranspersecond = (qurans - currentQurans) * 2;
     document.getElementById('quranspersecond').innerHTML = quranspersecond;
 
     levelUp();
-}, 1000);
+}, 500);
 
+window.setInterval(function(){
+    save();
+}, 10000)
+/* Automatic save and load function here
 window.onload = function(){
     load()
 };
@@ -116,6 +139,6 @@ window.onload = function(){
 window.onbeforeunload = function(e){
     if(e){
         save();
-        e.returnValue = 'Are you sure?';
     };
 };
+*/

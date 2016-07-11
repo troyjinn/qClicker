@@ -1,4 +1,6 @@
 var qurans = 0;
+var level = 0;
+var tokens = 0;
 var cursors = 0;
 var keyboards = 0;
 var feels = 0;
@@ -6,8 +8,18 @@ var quranspersecond = 0;
 var nedJokes = 0;
 
 function qClick(number){
-    qurans = qurans + number;
+    qurans = qurans + number + level;
     document.getElementById("qurans").innerHTML = qurans;
+};
+
+function levelUp(){
+    var exp = Math.floor(500 * Math.pow(1.5,level));
+    if(qurans >= exp){
+        level = level + 1;
+        document.getElementById('level').innerHTML = level;
+    };
+    var nextLevel = Math.floor(500 * Math.pow(1.5,level));
+    document.getElementById('nextLevel').innerHTML = nextLevel;
 };
 
 function buyCursor(){
@@ -58,6 +70,8 @@ function nedJoke() {
     document.getElementById('nedJokeCost').innerHTML = nextCost;
 };
 
+
+
 window.setInterval(function(){
     var currentQurans = qurans;
     qClick(cursors);
@@ -67,4 +81,6 @@ window.setInterval(function(){
 
     var quranspersecond = qurans - currentQurans;
     document.getElementById('quranspersecond').innerHTML = quranspersecond;
+
+    levelUp()
 }, 1000);

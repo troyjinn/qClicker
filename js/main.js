@@ -33,11 +33,11 @@ function buyKeyboard(){
 };
 
 function buyFeel(){
-    var feelCost = Math.floor(200 * Math.pow(1.5,keyboards));
+    var feelCost = Math.floor(200 * Math.pow(1.5,feels));
     if(qurans >= feelCost){
         feels = feels + 1;
         qurans = qurans - feelCost;
-        document.getElementById('keyboards').innerHTML = feels;
+        document.getElementById('feels').innerHTML = feels;
         document.getElementById('qurans').innerHTML = qurans;
     };
     var nextCost = Math.floor(200 * Math.pow(1.5,feels));
@@ -47,5 +47,5 @@ function buyFeel(){
 window.setInterval(function(){
     qClick(cursors);
     qClick(keyboards * 2);
-    qClick(keyboards * 5);
+    qClick(feels * 5);
 }, 1000);

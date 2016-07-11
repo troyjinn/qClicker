@@ -2,6 +2,8 @@ var qurans = 0;
 var cursors = 0;
 var keyboards = 0;
 var feels = 0;
+var quranspersecond = 0;
+var nedJokes = 0;
 
 function qClick(number){
     qurans = qurans + number;
@@ -44,8 +46,25 @@ function buyFeel(){
     document.getElementById('feelCost').innerHTML = nextCost;
 };
 
+function nedJoke() {
+    var nedJokeCost = Math.floor(600 * Math.pow(1.8,nedJokes));
+    if(qurans >= nedJokeCost){
+        nedJokes = nedJokes +1;
+        qurans = qurans - nedJokeCost;
+        document.getElementById('nedJokes').innerHTML = nedJokes;
+        document.getElementById('qurans').innerHTML = qurans;
+    };
+    var nextCost = Math.floor(600 * Math.pow(1.8,nedJokes));
+    document.getElementById('nedJokeCost').innerHTML = nextCost;
+};
+
 window.setInterval(function(){
+    var currentQurans = qurans;
     qClick(cursors);
     qClick(keyboards * 2);
     qClick(feels * 5);
+    qClick(nedJokes * 10);
+
+    var quranspersecond = qurans - currentQurans;
+    document.getElementById('quranspersecond').innerHTML = quranspersecond;
 }, 1000);

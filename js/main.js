@@ -7,6 +7,8 @@ var feels = 0;
 var quranspersecond = 0;
 var nedJokes = 0;
 
+
+
 function qClick(number){
     qurans = qurans + number + level;
     document.getElementById("qurans").innerHTML = qurans;
@@ -70,7 +72,29 @@ function nedJoke() {
     document.getElementById('nedJokeCost').innerHTML = nextCost;
 };
 
+function save(){
+    var save = {
+        qurans: qurans,
+        level: level,
+        tokens: tokens,
+        cursors: cursors,
+        keyboards: keyboards,
+        feels: feels,
+        nedJokes: nedJokes
+    }
+    localStorage.setItem("save",JSON.stringify(save));
+};
 
+function load(){
+    var savegame = JSON.parse(localStorage.getItem("save"));
+    if(typeof savegame.qurans !== "undefined") qurans = savegame.qurans;
+    if(typeof savegame.level !== "undefined") level = savegame.level;
+    if(typeof savegame.tokens !== "undefined") tokens = savegame.tokens;
+    if(typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
+    if(typeof savegame.keyboards !== "undefined") keyboards = savegame.keyboards;
+    if(typeof savegame.feels !== "undefined") feels = savegame.feels;
+    if(typeof savegame.nedJokes !== "undefined") nedJokes = savegame.nedJokes;
+};
 
 window.setInterval(function(){
     var currentQurans = qurans;
@@ -82,5 +106,16 @@ window.setInterval(function(){
     var quranspersecond = qurans - currentQurans;
     document.getElementById('quranspersecond').innerHTML = quranspersecond;
 
-    levelUp()
+    levelUp();
 }, 1000);
+
+window.onload = function(){
+    load()
+};
+
+window.onbeforeunload = function(e){
+    if(e){
+        save();
+        e.returnValue = 'Are you sure?';
+    };
+};

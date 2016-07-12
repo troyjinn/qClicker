@@ -1,4 +1,5 @@
 var qurans = 0;
+var tick = 500;
 var level = 0;
 var tokens = 0;
 var cursors = 0;
@@ -22,7 +23,9 @@ function levelUp(){
     var exp = Math.floor(500 * Math.pow(1.5,level));
     if(qurans >= exp){
         level = level + 1;
+        tokens = tokens + 1;
         document.getElementById('level').innerHTML = level;
+        document.getElementById('tokens').innerHTML = tokens;
     };
     var nextLevel = Math.floor(500 * Math.pow(1.5,level));
     document.getElementById('nextLevel').innerHTML = nextLevel;
@@ -76,16 +79,38 @@ function nedJoke() {
     document.getElementById('nedJokeCost').innerHTML = nextCost;
 };
 
-function harshNoise() {
-    var harshNoiseCost = Math.floor(2000 * Math.pow(2.1,harshNoise));
-    if(qurans >= harshNoiseCost){
+function harshNoise(){
+    var noiseCost = Math.floor(2000 * Math.pow(2.1, harshNoise));
+    if(qurans >= noiseCost){
         harshNoise = harshNoise + 1;
-        qurans = qurans - harshNoiseCost;
+        qurans = qurans - noiseCost;
         document.getElementById('harshNoise').innerHTML = harshNoise;
         document.getElementById('qurans').innerHTML = qurans;
     };
-    var nextCost = Math.floor(2000 * Math.pow(2.1,harshNoiseCost));
-    document.getElementById('harshNoiseCost').innerHTML = nextCost;
+    var nextCost = Math.floor(2000 * Math.pow(2.1, harshNoise));
+    document.getElementById('noiseCost').innerHTML = nextCost;
+};
+
+function fortune() {
+    if(tokens>0){
+        tokens = tokens - 1;
+        i = (Math.floor(Math.random() * 10) + 1);
+        if(i>=8){
+            a = (Math.floor(Math.random() * 10) + 1);
+            b = (Math.floor(Math.random() * 10) + 1);
+            x = a * b * 1000;
+            qurans = qurans + x;
+            document.getElementById('fortune').innerHTML = x;
+            document.getElementById('tokens').innerHTML = tokens;
+        }else{
+            a = (Math.floor(Math.random() * 10) + 1);
+            b = (Math.floor(Math.random() * 10) + 1);
+            x = a * b * 1000 * -1;
+            qurans = qurans - x;
+            document.getElementById('fortune').innerHTML = x;
+        };
+        document.getElementById('tokens').innerHTML = tokens;
+    };
 };
 
 function save(){
@@ -126,7 +151,7 @@ window.setInterval(function(){
     document.getElementById('quranspersecond').innerHTML = quranspersecond;
 
     levelUp();
-}, 500);
+}, tick);
 
 window.setInterval(function(){
     save();

@@ -137,6 +137,11 @@ function load(){
     if(typeof savegame.noiseAlbums !== "undefined") nedJokes = savegame.noiseAlbums;
 };
 
+function kys() {
+    localStorage.removeItem("save");
+    location.reload();
+};
+
 window.setInterval(function(){
     var currentQurans = qurans;
     qClick((cursors)/2);
@@ -151,9 +156,6 @@ window.setInterval(function(){
     levelUp();
 }, tick);
 
-window.setInterval(function(){
-    save();
-}, 10000)
 /* Automatic save and load function here
 window.onload = function(){
     load()

@@ -1,7 +1,7 @@
-var qurans = 0;
-var tick = 500;
+var qurans = 2000;
+var clickTime = 1000;
 var level = 0;
-var tokens = 0;
+var tokens = 20;
 var cursors = 0;
 var keyboards = 0;
 var feels = 0;
@@ -104,16 +104,21 @@ function twelvie() {
     document.getElementById("callCost").innerHTML = nextCost;
 };
 
+
+
 function fortune() {
     if(tokens>0){
         tokens = tokens - 1;
         i = (Math.floor(Math.random() * 100) + 1);
-        if(i>=65){
+        if(i>=65 && i<95){
             a = (Math.floor(Math.random() * 10) + 1);
             x = a * 1000;
             qurans = qurans + x;
             document.getElementById('fortune').innerHTML = x;
-            document.getElementById('tokens').innerHTML = tokens;
+        }else if(i>=95){
+            qurans = qurans * 2;
+            document.getElementById('fortune').innerHTML = "Double ";
+            document.getElementById('qurans').innerHTML = qurans;
         }else{
             a = (Math.floor(Math.random() * 10) + 1);
             x = a * 100 * -1;
@@ -170,7 +175,7 @@ window.setInterval(function(){
     document.getElementById('quranspersecond').innerHTML = quranspersecond;
 
     levelUp();
-}, tick);
+}, clickTime);
 
 /* Automatic save and load function here
 window.onload = function(){

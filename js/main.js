@@ -1,5 +1,5 @@
 var qurans = 0;
-var clickTime = 1000;
+var clickTime = 500;
 var level = 0;
 var tokens = 0;
 var cursors = 0;

@@ -10,6 +10,8 @@ var nedJokes = 0;
 var noiseAlbums = 0;
 var twelvieCalls = 0;
 
+//clicks
+
 function manualClick(number){
     qurans = qurans + number + level;
     document.getElementById('qurans').innerHTML = qurans;
@@ -19,6 +21,8 @@ function qClick(number){
     qurans = qurans + number;
     document.getElementById("qurans").innerHTML = qurans;
 };
+
+//levels
 
 function levelUp(){
     var exp = Math.floor(500 * Math.pow(1.5,level));
@@ -31,6 +35,8 @@ function levelUp(){
     var nextLevel = Math.floor(500 * Math.pow(1.5,level));
     document.getElementById('nextLevel').innerHTML = nextLevel;
 };
+
+//items
 
 function buyCursor(){
     var cursorCost = Math.floor(10 * Math.pow(1.1,cursors));
@@ -104,6 +110,8 @@ function twelvie() {
     document.getElementById("callCost").innerHTML = nextCost;
 };
 
+//fortune
+
 function fortune() {
     if(tokens>0){
         tokens = tokens - 1;
@@ -119,13 +127,15 @@ function fortune() {
             document.getElementById('qurans').innerHTML = qurans;
         }else{
             a = (Math.floor(Math.random() * 10) + 1);
-            x = a * 100 * -1;
+            x = a * 1000 * -1;
             qurans = qurans + x;
             document.getElementById('fortune').innerHTML = x;
         };
         document.getElementById('tokens').innerHTML = tokens;
     };
 };
+
+//save
 
 function save(){
     var save = {
@@ -160,6 +170,36 @@ function kys() {
     location.reload();
 };
 
+//milestone
+
+function milestone() {
+    if (qurans >= 42069 && qurans < 666666) {
+      document.getElementById('milestone').innerHTML = "420,69 Qurans. dude weed lmao";
+  } else if (qurans >= 666666 && qurans < 1000000) {
+      document.getElementById('milestone').innerHTML = "666,666 Qurans. You have sold your soul to satan";
+  } else if (qurans >= 1000000 && qurans < 4883669) {
+      document.getElementById('milestone').innerHTML = "1 Million Qurans. Stop playing this game.";
+  } else if (qurans >= 4883669 && qurans < 123456789 ) {
+      document.getElementById('milestone').innerHTML = "Matt's phone number. In a 10s RNGesus decides whether you reset or not.";
+      function mattsnumber() {
+          i = 70;
+          if (i >= 50) {
+              document.getElementById('milestone').innerHTML = "RNG decides you keep your game.";
+          } else {
+              document.getElementById('milestone').innerHTML = "Matt says kill yourself, you do it. Try again :c";
+              window.setTimeout(kys(),100000);
+          };
+      };
+      window.setTimeout(mattsnumber(),100000)
+  } else if (qurans >= 123456789 && qurans < 1000000000 ) {
+      document.getElementById('milestone').innerHTML = "123,456,789 Qurans. Enjoy counting.";
+  } else if (qurans >= 1000000000) {
+      document.getElementById('milestone').innerHTML = "1 Billion Qurans. This - this shit - this is not okay.";
+    };
+};
+
+//quran gains
+
 window.setInterval(function(){
     var currentQurans = qurans;
     qClick((cursors)/2);
@@ -167,12 +207,13 @@ window.setInterval(function(){
     qClick((feels * 6)/2);
     qClick((nedJokes * 10)/2);
     qClick((noiseAlbums * 20)/2);
-    qClick((twelvieCalls * 112)/2);
+    qClick((twelvieCalls * 60)/2);
 
     var quranspersecond = (qurans - currentQurans) * 2;
     document.getElementById('quranspersecond').innerHTML = quranspersecond;
 
     levelUp();
+    milestone();
 }, clickTime);
 
 /* Automatic save and load function here

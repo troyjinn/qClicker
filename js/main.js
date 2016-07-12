@@ -1,4 +1,4 @@
-var qurans = 0;
+var qurans = 5000;
 var tick = 500;
 var level = 0;
 var tokens = 0;
@@ -7,6 +7,7 @@ var keyboards = 0;
 var feels = 0;
 var quranspersecond = 0;
 var nedJokes = 0;
+var noiseAlbums = 0;
 
 function manualClick(number){
     qurans = qurans + number + level;
@@ -78,6 +79,18 @@ function nedJoke() {
     document.getElementById('nedJokeCost').innerHTML = nextCost;
 };
 
+function buyNoise() {
+    var noiseCost = Math.floor(2000 * Math.pow(2.1,noiseAlbums));
+    if(qurans >= noiseCost){
+        noiseAlbums = noiseAlbums + 1;
+        qurans = qurans - noiseCost;
+        document.getElementById("noiseAlbums").innerHTML = noiseAlbums;
+        document.getElementById("qurans").innerHTML = qurans;
+    };
+    var nextCost = Math.floor(2000 * Math.pow(2.1,noiseAlbums));
+    document.getElementById("noiseCost").innerHTML = nextCost;
+};
+
 function fortune() {
     if(tokens>0){
         tokens = tokens - 1;
@@ -106,7 +119,8 @@ function save(){
         cursors: cursors,
         keyboards: keyboards,
         feels: feels,
-        nedJokes: nedJokes
+        nedJokes: nedJokes,
+        noiseAlbums: noiseAlbums
     };
     localStorage.setItem("save",JSON.stringify(save));
 };
@@ -120,6 +134,7 @@ function load(){
     if(typeof savegame.keyboards !== "undefined") keyboards = savegame.keyboards;
     if(typeof savegame.feels !== "undefined") feels = savegame.feels;
     if(typeof savegame.nedJokes !== "undefined") nedJokes = savegame.nedJokes;
+    if(typeof savegame.noiseAlbums !== "undefined") nedJokes = savegame.noiseAlbums;
 };
 
 window.setInterval(function(){
@@ -128,6 +143,7 @@ window.setInterval(function(){
     qClick((keyboards * 2)/2);
     qClick((feels * 6)/2);
     qClick((nedJokes * 10)/2);
+    qClick((noiseAlbums * 20)/2);
 
     var quranspersecond = (qurans - currentQurans) * 2;
     document.getElementById('quranspersecond').innerHTML = quranspersecond;

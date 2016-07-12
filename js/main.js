@@ -161,7 +161,7 @@ function load(){
     if(typeof savegame.keyboards !== "undefined") keyboards = savegame.keyboards;
     if(typeof savegame.feels !== "undefined") feels = savegame.feels;
     if(typeof savegame.nedJokes !== "undefined") nedJokes = savegame.nedJokes;
-    if(typeof savegame.noiseAlbums !== "undefined") nedJokes = savegame.noiseAlbums;
+    if(typeof savegame.noiseAlbums !== "undefined") noiseAlbums = savegame.noiseAlbums;
     if(typeof savegame.twelvieCalls !== "undefined") twelvieCalls = savegame.twelvieCalls;
 };
 

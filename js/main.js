@@ -1,7 +1,7 @@
-var qurans = 2000;
+var qurans = 0;
 var clickTime = 1000;
 var level = 0;
-var tokens = 20;
+var tokens = 0;
 var cursors = 0;
 var keyboards = 0;
 var feels = 0;
@@ -103,8 +103,6 @@ function twelvie() {
     var nextCost = Math.floor(12000 * Math.pow(2.5,twelvieCalls));
     document.getElementById("callCost").innerHTML = nextCost;
 };
-
-
 
 function fortune() {
     if(tokens>0){

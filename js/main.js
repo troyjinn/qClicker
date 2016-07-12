@@ -1,4 +1,4 @@
-var qurans = 20000;
+var qurans = 0;
 var tick = 500;
 var level = 0;
 var tokens = 0;

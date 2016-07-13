@@ -148,16 +148,26 @@ function friendZone() {
 function fortune() {
     if(tokens>0){
         tokens = tokens - 1;
-        i = (Math.floor(Math.random() * 100) + 1);
-        if(i>=65 && i<95){
+        i = 3;
+        if(i>=40 && i<95){
             a = (Math.floor(Math.random() * 10) + 1);
             x = a * 1000;
             qurans = qurans + x;
             document.getElementById('fortune').innerHTML = x;
-        }else if(i>=95){
+        }else if(i>=95 && i<99){
             qurans = qurans * 2;
             document.getElementById('fortune').innerHTML = "Double ";
             document.getElementById('qurans').innerHTML = qurans;
+        } else if (i >= 99) {
+            qurans = qurans * 10;
+            document.getElementById('fortune').innerHTML = "Ten times your ";
+            document.getElementById('qurans').innerHTML = qurans;
+        } else if (i <= 5) {
+            qurans = qurans * -1;
+            document.getElementById('fortune').innerHTML = "5%, Negative Qurans ";
+            document.getElementById('qurans').innerHTML = qurans;
+        } else if (i == 1) {
+            kys();
         }else{
             a = (Math.floor(Math.random() * 10) + 1);
             x = a * 1000 * -1;

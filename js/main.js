@@ -12,16 +12,23 @@ var twelvieCalls = 0;
 var beaneggs = 0;
 var friendzones = 0;
 
+//prettify
+function prettify(input) {
+    x = 10000
+    var output = Math.round(input * x)/x;
+        return output;
+};
+
 //clicks
 
 function manualClick(number){
     qurans = qurans + number + level;
-    document.getElementById('qurans').innerHTML = qurans;
 };
 
 function qClick(number){
     qurans = qurans + number;
     document.getElementById("qurans").innerHTML = qurans;
+    document.getElementById('qurans').innerHTML = prettify(qurans);
 };
 
 //levels
@@ -242,7 +249,7 @@ window.setInterval(function(){
     qClick((friendzones * 200)/10);
 
     var quranspersecond = (qurans - currentQurans) * 10;
-    document.getElementById('quranspersecond').innerHTML = quranspersecond;
+    document.getElementById('quranspersecond').innerHTML = prettify(quranspersecond);
 
     levelUp();
     milestone();

@@ -1,4 +1,4 @@
-var qurans = 0;
+var qurans = 4883669;
 var clickTime = 100;
 var level = 0;
 var tokens = 0;
@@ -148,7 +148,7 @@ function friendZone() {
 function fortune() {
     if(tokens>0){
         tokens = tokens - 1;
-        i = 3;
+        i = (Math.floor(Math.random() * 100) + 1);
         if(i>=40 && i<95){
             a = (Math.floor(Math.random() * 10) + 1);
             x = a * 1000;
@@ -215,34 +215,6 @@ function load(){
 function kys() {
     localStorage.removeItem("save");
     location.reload();
-};
-
-//milestone
-
-function milestone() {
-    if (qurans >= 42069 && qurans < 666666) {
-      document.getElementById('milestone').innerHTML = "420,69 Qurans. dude weed lmao";
-  } else if (qurans >= 666666 && qurans < 1000000) {
-      document.getElementById('milestone').innerHTML = "666,666 Qurans. You have sold your soul to satan";
-  } else if (qurans >= 1000000 && qurans < 4883669) {
-      document.getElementById('milestone').innerHTML = "1 Million Qurans. Stop playing this game.";
-  } else if (qurans >= 4883669 && qurans < 123456789 ) {
-      document.getElementById('milestone').innerHTML = "Matt's phone number. In a 10s RNGesus decides whether you reset or not.";
-      function mattsnumber() {
-          i = 70;
-          if (i >= 50) {
-              document.getElementById('milestone').innerHTML = "RNG decides you keep your game.";
-          } else {
-              document.getElementById('milestone').innerHTML = "Matt says kill yourself, you do it. Try again :c";
-              window.setTimeout(kys(),100000);
-          };
-      };
-      window.setTimeout(mattsnumber(),100000)
-  } else if (qurans >= 123456789 && qurans < 1000000000 ) {
-      document.getElementById('milestone').innerHTML = "123,456,789 Qurans. Enjoy counting.";
-  } else if (qurans >= 1000000000) {
-      document.getElementById('milestone').innerHTML = "1 Billion Qurans. This - this shit - this is not okay.";
-    };
 };
 
 //quran gains

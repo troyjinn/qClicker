@@ -1,4 +1,4 @@
-var qurans = 4883669;
+var qurans = 0;
 var clickTime = 100;
 var level = 0;
 var tokens = 0;

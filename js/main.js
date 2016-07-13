@@ -1,5 +1,5 @@
 var qurans = 0;
-var clickTime = 500;
+var clickTime = 100;
 var level = 0;
 var tokens = 0;
 var cursors = 0;
@@ -9,6 +9,8 @@ var quranspersecond = 0;
 var nedJokes = 0;
 var noiseAlbums = 0;
 var twelvieCalls = 0;
+var beaneggs = 0;
+var friendzones = 0;
 
 //clicks
 
@@ -110,6 +112,30 @@ function twelvie() {
     document.getElementById("callCost").innerHTML = nextCost;
 };
 
+function buyBeanegg() {
+    var beaneggCost = Math.floor(80000 * Math.pow(2.7,beaneggs));
+    if(qurans >= beaneggCost){
+        beaneggs = beaneggs + 1;
+        qurans = qurans - beaneggCost;
+        document.getElementById("beaneggs").innerHTML = beaneggs;
+        document.getElementById("qurans").innerHTML = qurans;
+    };
+    var nextCost = Math.floor(80000 * Math.pow(2.7,beaneggs));
+    document.getElementById("beaneggCost").innerHTML = nextCost;
+};
+
+function friendZone() {
+    var friendzoneCost = Math.floor(200000 * Math.pow(3,friendzones));
+    if(qurans >= friendzoneCost){
+        friendzones = friendzones + 1;
+        qurans = qurans - friendzoneCost;
+        document.getElementById("friendzones").innerHTML = friendzones;
+        document.getElementById("qurans").innerHTML = qurans;
+    };
+    var nextCost = Math.floor(200000 * Math.pow(3,friendzones));
+    document.getElementById("friendzoneCost").innerHTML = nextCost;
+};
+
 //fortune
 
 function fortune() {
@@ -147,7 +173,9 @@ function save(){
         feels: feels,
         nedJokes: nedJokes,
         noiseAlbums: noiseAlbums,
-        twelvieCalls: twelvieCalls
+        twelvieCalls: twelvieCalls,
+        beaneggs: beaneggs,
+        friendzones: friendzones
     };
     localStorage.setItem("save",JSON.stringify(save));
 };
@@ -163,6 +191,8 @@ function load(){
     if(typeof savegame.nedJokes !== "undefined") nedJokes = savegame.nedJokes;
     if(typeof savegame.noiseAlbums !== "undefined") noiseAlbums = savegame.noiseAlbums;
     if(typeof savegame.twelvieCalls !== "undefined") twelvieCalls = savegame.twelvieCalls;
+    if(typeof savegame.beaneggs !== "undefined") beaneggs = savegame.beaneggs;
+    if(typeof savegame.friendzones !== "undefined") friendzones = savegame.friendzones;
 };
 
 function kys() {
@@ -202,14 +232,16 @@ function milestone() {
 
 window.setInterval(function(){
     var currentQurans = qurans;
-    qClick((cursors)/2);
-    qClick((keyboards * 2)/2);
-    qClick((feels * 6)/2);
-    qClick((nedJokes * 10)/2);
-    qClick((noiseAlbums * 20)/2);
-    qClick((twelvieCalls * 60)/2);
+    qClick((cursors)/10);
+    qClick((keyboards * 2)/10);
+    qClick((feels * 6)/10);
+    qClick((nedJokes * 10)/10);
+    qClick((noiseAlbums * 20)/10);
+    qClick((twelvieCalls * 60)/10);
+    qClick((beaneggs * 120)/10);
+    qClick((friendzones * 200)/10);
 
-    var quranspersecond = (qurans - currentQurans) * 2;
+    var quranspersecond = (qurans - currentQurans) * 10;
     document.getElementById('quranspersecond').innerHTML = quranspersecond;
 
     levelUp();
